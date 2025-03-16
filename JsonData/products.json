@@ -1,0 +1,502 @@
+[
+    {
+        "id": 1,
+        "name": "Amber Wood Perfume",
+        "price": 4999,
+        "image": "https://i.pinimg.com/736x/a1/df/51/a1df51fac9062fe1bd3a17d903f82184.jpg",
+        "discount": 15,
+        "desc": "A luxurious blend of deep amber, warm vanilla, and rich aged woods. This perfume creates a sophisticated and elegant aura, perfect for special occasions and evening wear.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 2,
+        "name": "Rose Musk Eau De Parfum",
+        "price": 3999,
+        "image": "https://i.pinimg.com/736x/d1/ce/70/d1ce70d085dbd4499717ba58c0865ce7.jpg",
+        "discount": 10,
+        "desc": "An enchanting fragrance that intertwines delicate floral rose notes with a sensual musk undertone. Ideal for those who appreciate timeless elegance and romance.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 3,
+        "name": "Sandalwood Bliss Perfume",
+        "price": 3299,
+        "image": "https://i.pinimg.com/736x/02/65/c4/0265c44990f04204615825d2d95ac931.jpg",
+        "discount": 20,
+        "desc": "A soothing fusion of creamy sandalwood, soft floral undertones, and a hint of citrus. Designed for daily wear, bringing a sense of calm and serenity throughout the day.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 4,
+        "name": "Ocean Breeze Cologne",
+        "price": 2999,
+        "image": "https://i.pinimg.com/736x/d1/ce/70/d1ce70d085dbd4499717ba58c0865ce7.jpg",
+        "discount": 25,
+        "desc": "A refreshing aquatic fragrance that embodies the cool essence of ocean waves and salty breezes. Infused with citrus and marine notes for a fresh and energetic vibe.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 5,
+        "name": "Mystic Oud Perfume",
+        "price": 750,
+        "image": "https://i.pinimg.com/736x/ba/6a/39/ba6a392fd58a28332d8aae08acfef99e.jpg",
+        "discount": 10,
+        "desc": "An alluring oud-based perfume with a warm, woody aroma blended with hints of spice and floral undertones. Perfect for those who love a deep and exotic fragrance.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 6,
+        "name": "Lavender Bliss Bathing Oil",
+        "price": 800,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 11,
+        "desc": "A calming bathing oil enriched with pure lavender extracts to relax the mind and nourish the skin. Leaves you feeling refreshed and rejuvenated after every bath.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 7,
+        "name": "Vanilla Spice Scented Candle",
+        "price": 850,
+        "image": "https://i.pinimg.com/736x/2d/93/cb/2d93cb1ebe6270b9181c1bdc29a8ad78.jpg",
+        "discount": 12,
+        "desc": "A warm and cozy candle infused with the soothing aroma of vanilla and a hint of spice. Creates a comforting atmosphere perfect for relaxation and unwinding.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 8,
+        "name": "Rose Glow Hydrating Face Serum",
+        "price": 900,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 13,
+        "desc": "A lightweight, deeply hydrating serum enriched with rose extracts and vitamins. Helps rejuvenate skin, leaving it soft, radiant, and nourished.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 9,
+        "name": "Argan Oil Hair Nourishing Serum",
+        "price": 950,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 14,
+        "desc": "A premium hair serum infused with argan oil, providing deep nourishment, frizz control, and a silky shine. Strengthens hair and promotes healthier growth.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 10,
+        "name": "Golden Musk Luxury Perfume",
+        "price": 1000,
+        "image": "https://i.pinimg.com/736x/0b/cd/9a/0bcd9a39650ee7d4e362439f7f9d39e9.jpg",
+        "discount": 15,
+        "desc": "A rich and luxurious blend of golden musk and subtle floral notes. A fragrance that exudes elegance and confidence, suitable for any occasion.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 11,
+        "name": "Herbal Infusion Bath Salt",
+        "price": 1050,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 16,
+        "desc": "A relaxing blend of mineral-rich salts infused with essential oils and herbs. Helps detoxify the body and soothe muscles for a spa-like bathing experience.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 12,
+        "name": "Cinnamon & Clove Aromatic Candle",
+        "price": 1100,
+        "image": "https://i.pinimg.com/736x/20/84/7f/20847fc26e39953aeede27116b4d2d1e.jpg",
+        "discount": 17,
+        "desc": "A warm and cozy candle infused with rich cinnamon and spicy clove notes. Perfect for creating a comforting and festive ambiance in any space.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 13,
+        "name": "Vitamin C Brightening Face Cream",
+        "price": 1150,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 18,
+        "desc": "A nourishing face cream packed with Vitamin C and antioxidants to enhance radiance, even out skin tone, and provide long-lasting hydration.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 14,
+        "name": "Keratin Infused Hair Serum",
+        "price": 1200,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 19,
+        "desc": "A powerful hair serum enriched with keratin to strengthen strands, reduce frizz, and restore shine for silky, healthy-looking hair.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 15,
+        "name": "Citrus Bloom Eau De Parfum",
+        "price": 1250,
+        "image": "https://i.pinimg.com/736x/ff/46/aa/ff46aa6fa19e1ddc002a18fba1496660.jpg",
+        "discount": 20,
+        "desc": "A fresh and vibrant fragrance combining zesty citrus notes with delicate floral undertones. A perfect pick for a refreshing and energetic start to the day.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 16,
+        "name": "Aloe & Green Tea Body Wash",
+        "price": 1300,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 21,
+        "desc": "A soothing body wash infused with aloe vera and green tea extracts to cleanse, refresh, and hydrate the skin while providing a calming aroma.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 17,
+        "name": "Lavender & Vanilla Scented Candle",
+        "price": 1350,
+        "image": "https://i.pinimg.com/736x/5e/d8/cc/5ed8cc755d1913fc9b95e5255655505b.jpg",
+        "discount": 22,
+        "desc": "A soothing candle that combines the relaxing aroma of lavender with the sweet warmth of vanilla, perfect for unwinding after a long day.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 18,
+        "name": "Hyaluronic Acid Hydrating Face Mist",
+        "price": 1400,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 23,
+        "desc": "A lightweight mist packed with hyaluronic acid to instantly refresh and hydrate your skin, leaving it plump and glowing throughout the day.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 19,
+        "name": "Coconut & Argan Oil Hair Mask",
+        "price": 1450,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 24,
+        "desc": "A deeply nourishing hair mask infused with coconut and argan oil to repair, strengthen, and revitalize dry and damaged hair.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 20,
+        "name": "Mystic Oud Eau De Parfum",
+        "price": 1500,
+        "image": "https://i.pinimg.com/736x/26/9f/1a/269f1a1cafcd9a655b0a33ed045220c4.jpg",
+        "discount": 5,
+        "desc": "An opulent perfume featuring deep oud wood, warm spices, and subtle floral accents. A perfect scent for those who love a bold and luxurious fragrance.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 21,
+        "name": "Rose & Shea Butter Bath Foam",
+        "price": 1550,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 6,
+        "desc": "A luxurious bath foam enriched with rose extracts and shea butter to leave your skin feeling soft, nourished, and delicately scented.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 22,
+        "name": "Sandalwood & Patchouli Candle",
+        "price": 1600,
+        "image": "https://i.pinimg.com/736x/92/38/85/923885b92a0662adc3bc10354063e9a4.jpg",
+        "discount": 7,
+        "desc": "A rich and earthy candle that combines sandalwood and patchouli for a warm and grounding aroma, perfect for meditation and relaxation.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 23,
+        "name": "Collagen Boost Face Serum",
+        "price": 1650,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 8,
+        "desc": "A rejuvenating face serum infused with collagen and peptides to enhance skin elasticity, reduce fine lines, and promote a youthful glow.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 24,
+        "name": "Argan Oil & Biotin Hair Conditioner",
+        "price": 1700,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 9,
+        "desc": "A deep-conditioning treatment with argan oil and biotin to strengthen hair, prevent breakage, and improve shine.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 25,
+        "name": "Midnight Jasmine Eau De Parfum",
+        "price": 1750,
+        "image": "https://i.pinimg.com/736x/d9/7b/c8/d97bc817db278330745381e02330141f.jpg",
+        "discount": 10,
+        "desc": "An enchanting floral fragrance with the seductive notes of midnight jasmine, perfect for evening wear and special occasions.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 26,
+        "name": "Lavender & Oatmeal Exfoliating Scrub",
+        "price": 1800,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 11,
+        "desc": "A gentle exfoliating scrub with lavender and oatmeal to remove dead skin cells while providing hydration and a soothing scent.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 27,
+        "name": "Vanilla Bourbon Scented Candle",
+        "price": 1850,
+        "image": "https://i.pinimg.com/736x/d6/2b/ca/d62bca4d4e432a28e0b27539cdd2fb54.jpg",
+        "discount": 12,
+        "desc": "A rich and indulgent candle with the creamy sweetness of vanilla combined with the warm notes of bourbon.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 28,
+        "name": "Green Tea & Aloe Vera Face Mask",
+        "price": 1900,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 13,
+        "desc": "A refreshing face mask infused with green tea and aloe vera to hydrate, detoxify, and calm irritated skin.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 29,
+        "name": "Avocado & Keratin Hair Repair Mask",
+        "price": 1950,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 14,
+        "desc": "A rich and nourishing hair mask with avocado and keratin to repair and revitalize damaged and dry hair.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 30,
+        "name": "Royal Musk Eau De Parfum",
+        "price": 2000,
+        "image": "https://i.pinimg.com/736x/95/a6/a4/95a6a4635f889a790c59e58639cb892c.jpg",
+        "discount": 15,
+        "desc": "A luxurious and long-lasting musk fragrance with deep, woody, and slightly sweet undertones for an elegant signature scent.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 31,
+        "name": "Himalayan Salt & Citrus Bath Soak",
+        "price": 2050,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 16,
+        "desc": "A rejuvenating bath soak infused with Himalayan salt and citrus extracts to detoxify and refresh your skin.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 32,
+        "name": "Amber & Oud Luxury Candle",
+        "price": 2100,
+        "image": "https://i.pinimg.com/736x/ce/7d/e0/ce7de0c6c2621fbfc0441c8e84706afa.jpg",
+        "discount": 17,
+        "desc": "A warm and exotic scented candle featuring the rich notes of amber and oud for a cozy ambiance.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 33,
+        "name": "Vitamin C & Hyaluronic Acid Serum",
+        "price": 2150,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 18,
+        "desc": "A powerful skin-brightening serum packed with vitamin C and hyaluronic acid to hydrate and even out skin tone.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 34,
+        "name": "Coconut & Aloe Hydrating Shampoo",
+        "price": 2200,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 19,
+        "desc": "A sulfate-free shampoo with coconut and aloe extracts to cleanse, hydrate, and nourish dry hair.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 35,
+        "name": "Mystic Oud Eau De Parfum",
+        "price": 2250,
+        "image": "https://i.pinimg.com/736x/95/a6/a4/95a6a4635f889a790c59e58639cb892c.jpg",
+        "discount": 20,
+        "desc": "A deep, woody fragrance with the richness of oud and subtle floral notes for an enchanting scent.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 36,
+        "name": "Lavender & Eucalyptus Shower Gel",
+        "price": 2300,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 21,
+        "desc": "A calming shower gel with lavender and eucalyptus oils to cleanse and refresh your body and mind.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 37,
+        "name": "French Vanilla & Cocoa Candle",
+        "price": 2350,
+        "image": "https://i.pinimg.com/736x/6b/32/be/6b32bec72e2f41a09aff110d60337162.jpg",
+        "discount": 22,
+        "desc": "A deliciously rich and creamy vanilla candle with hints of cocoa for a comforting home fragrance.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 38,
+        "name": "Tea Tree & Charcoal Detox Mask",
+        "price": 2400,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 23,
+        "desc": "A purifying face mask with tea tree oil and activated charcoal to deeply cleanse and remove impurities.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 39,
+        "name": "Keratin & Argan Oil Hair Serum",
+        "price": 2450,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 24,
+        "desc": "A nourishing hair serum with keratin and argan oil to smooth frizz, repair damage, and add shine.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 40,
+        "name": "Velvet Rose & Sandalwood Perfume",
+        "price": 2500,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 5,
+        "desc": "A sophisticated fragrance blending the elegance of velvet rose with the warmth of sandalwood for a lasting scent.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 41,
+        "name": "Rose & Chamomile Bath Salts",
+        "price": 2550,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 6,
+        "desc": "A luxurious blend of rose and chamomile bath salts to relax and soothe tired muscles.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 42,
+        "name": "Sandalwood & Patchouli Candle",
+        "price": 2600,
+        "image": "https://i.pinimg.com/736x/8d/bc/75/8dbc75ca1e57a28ec3730e134aa7d66c.jpg",
+        "discount": 7,
+        "desc": "A calming candle infused with sandalwood and patchouli for a warm, earthy aroma.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 43,
+        "name": "Aloe Vera & Green Tea Face Gel",
+        "price": 2650,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 8,
+        "desc": "A soothing face gel with aloe vera and green tea to hydrate and refresh your skin.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 44,
+        "name": "Argan & Jojoba Hair Oil",
+        "price": 2700,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 9,
+        "desc": "A nourishing blend of argan and jojoba oils to repair and strengthen your hair.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 45,
+        "name": "Citrus Bloom Eau de Toilette",
+        "price": 2750,
+        "image": "https://i.pinimg.com/736x/d9/7b/c8/d97bc817db278330745381e02330141f.jpg",
+        "discount": 10,
+        "desc": "A fresh and invigorating perfume with citrus and floral notes for a delightful scent.",
+        "category": "Perfumes",
+        "quantity": 10
+    },
+    {
+        "id": 46,
+        "name": "Eucalyptus & Mint Body Wash",
+        "price": 2800,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 11,
+        "desc": "An energizing body wash with eucalyptus and mint to cleanse and refresh your skin.",
+        "category": "Bathing_products",
+        "quantity": 10
+    },
+    {
+        "id": 47,
+        "name": "Vanilla & Caramel Scented Candle",
+        "price": 2850,
+        "image": "https://i.pinimg.com/736x/96/3e/d2/963ed27c633d6673e2b88645ecb7705a.jpg",
+        "discount": 12,
+        "desc": "A warm and inviting vanilla caramel candle that creates a cozy atmosphere.",
+        "category": "Candles",
+        "quantity": 10
+    },
+    {
+        "id": 48,
+        "name": "Turmeric & Honey Face Mask",
+        "price": 2900,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 13,
+        "desc": "A skin-brightening face mask with turmeric and honey for a natural glow.",
+        "category": "Skincare",
+        "quantity": 10
+    },
+    {
+        "id": 49,
+        "name": "Keratin & Biotin Hair Serum",
+        "price": 2950,
+        "image": "https://images.pexels.com/photos/9659824/pexels-photo-9659824.jpeg",
+        "discount": 14,
+        "desc": "A strengthening hair serum with keratin and biotin for smooth, frizz-free hair.",
+        "category": "Haircare",
+        "quantity": 10
+    },
+    {
+        "id": 50,
+        "name": "Ocean Breeze Unisex Perfume",
+        "price": 3000,
+        "image": "https://i.pinimg.com/736x/70/df/d4/70dfd40c18f7832c0ecbc7bad6f8c669.jpg",
+        "discount": 15,
+        "desc": "A fresh and airy fragrance inspired by the ocean breeze, perfect for everyday wear.",
+        "category": "Perfumes",
+        "quantity": 10
+    }
+]

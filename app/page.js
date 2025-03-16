@@ -1,101 +1,200 @@
-import Image from "next/image";
+"use client";
+import Link from 'next/link';
+import products from '../JsonData/products.json'
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div>
+      {/* Hero section starts here */}
+      <div className="flex bg-[#E6DDCB] justify-between h-[60vh]">
+        <div className="flex items-center justify-center w-full">
+          <div>
+            <div className="text-4xl text-[#4A4946] font-serif">
+              <div className="mb-2">Natural Skin Care </div>
+              <div>Daily Routine</div>
+            </div>
+            <div className="text-lg text-[#4a4946] mt-5 font-semibold">
+              Products that harness the power of 100% Nature
+            </div>
+           <button className="bg-[#576152] px-3 py-1 mt-5 text-white cursor-pointer hover:bg-[#3d4439]">
+           <Link href={'/shop'}>
+              Shop Now
+           </Link>
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="w-full overflow-hidden object-cover">
+        <img src='https://i.pinimg.com/736x/56/07/72/56077283257e200f577db7167acfee11.jpg' className='h-[100%] w-[100%] object-cover'></img>
+
+        </div>
+      </div>
+      {/* category section starts here  */}
+      <div className="flex bg-[#F2F1ED] items-center justify-center py-10">
+        <div>
+          <div className="mb-10 text-center">
+            <div className="text-sm text-[#4A4946] font-semibold">
+              SHOP BY CATEGORY
+            </div>
+            <div className="text-4xl text-[#4A4946] font-serif mt-4">
+              Popular Categories
+            </div>
+          </div>
+          <div className="flex gap-10 justify-between">
+            {/* perfume cat  */}
+           <Link href={'category/perfumes'}>
+           <div>
+              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
+              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+                <img
+                  src="https://i.pinimg.com/736x/7e/19/07/7e1907a36a03e00eb9201997e036530b.jpg"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              </div>
+
+              <div className="text-center mt-2 text-lg font-serif">Perfumes</div>
+            </div>
+           </Link>
+            {/* bathing Essentials  */}
+           <Link href={'category/Bathing_Products'}>
+           <div>
+              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
+              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+                <img
+                  src="https://i.pinimg.com/736x/00/c0/4d/00c04d42f728348f6f9a536e66ea0009.jpg"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              </div>
+
+              <div className="text-center mt-2 text-lg font-serif">Bathing Essentials</div>
+            </div>
+           </Link>
+            {/* Haircare Essentials  */}
+           <Link href={'category/haircare'}>
+           <div>
+              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
+              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+                <img
+                  src="https://i.pinimg.com/736x/49/3f/2c/493f2c78b93838c5227cdab8e2aacb52.jpg"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              </div>
+
+              <div className="text-center mt-2 text-lg font-serif">Hair Care</div>
+            </div>
+           </Link>
+            {/* Skin care  */}
+           <Link href={'category/skincare'}>
+           <div>
+              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
+              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+                <img
+                  src="https://i.pinimg.com/736x/78/b7/9e/78b79ef9a907edfd255892082b224463.jpg"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              </div>
+
+              <div className="text-center mt-2 text-lg font-serif">Skin Care</div>
+            </div>
+           </Link>
+            {/* Scented Candles  */}
+           <Link href={'category/candles'}>
+           <div>
+              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
+              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+                <img
+                  src="https://i.pinimg.com/736x/bd/ac/37/bdac3770dcf6dd7629974542c93e7d81.jpg"
+                  className="h-full w-full object-cover "
+                />
+              </div>
+              </div>
+
+              <div className="text-center mt-2 text-lg font-serif">Scented Candles</div>
+            </div>
+           </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* hero2 section is here  */}
+      <div className="flex px-10 pb-5 bg-[#F2F1ED]">
+        <div className="w-full">
+          <img src="https://i.pinimg.com/736x/4c/5a/17/4c5a179600244250d4c7ef09c4633dbe.jpg" className="w-[100%]"></img>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <div className="text-center flex flex-col gap-5">
+            <div className="font-mono text-sm">Best Collections of 2025</div>
+            <div className="font-serif text-3xl text-[#4a4946]">Indule in <span>Cozy</span> Elegance</div>
+            <div className="text-lg font-serif text-[#576152]">Surround Yourself with Scents, Skincare, and Serenity <br/>That Feel as Cozy as Home</div>
+            <button className="underline text-sm">
+            <Link href={'/shop'}>
+              SHOP NOW
+           </Link>
+              </button>
+          </div>
+        </div>
+        <div className="w-full">
+          <img src="https://i.pinimg.com/736x/66/7c/99/667c99236daa06aeae5d55a88a699324.jpg" className="w-[100%]"></img>
+        </div>
+      </div>
+
+      {/* Best Seller section is here  */}
+      <div className='flex items-center justify-center py-10 bg-[#F2F1ED]'>
+      <div className=' w-[80vw] text-center'>
+        <div className='text-lg mb-2 font-mono'>Trending Products</div>
+        <div className='text-2xl font-serif mb-5 '>Having a Place set aside for an Activity you love <br/> makes it more likely you'll do it</div>
+        <div className="flex flex-col gap-4">
+  {/* First Row */}
+  <div className="flex justify-center gap-5">
+    {products.slice(0, 4).map((product) => (
+      <Link key={product.id} href={`/product/${product.id}`}>
+      <div  className="h-[300px] w-[200px] bg-[#E5E2DB] p-3 hover:bg-[#d7d6d2] transition-all ease-in-out duration-300">
+        <img src={product.image} alt={product.name} className="h-[80%] w-full object-cover pb-2 border-b border-[#4a4946]" />
+        <p className="text-center text-xs font-mono mt-2">{product.name}</p>
+        <p className="text-center">₹ {product.price}<span className='text-[0.75em]'>.00/-</span></p>
+      </div>
+      </Link>
+    ))}
+  </div>
+
+  {/* Second Row */}
+  <div className="flex justify-center gap-5">
+    {products.slice(4, 8).map((product) => (
+      <Link key={product.id} href={`/product/${product.id}`}>
+      <div  className="h-[300px] w-[200px] bg-[#E5E2DB] p-3 hover:bg-[#d7d6d2] transition-all ease-in-out duration-300">
+        <img src={product.image} alt={product.name} className="h-[80%] w-full object-cover pb-2 border-b border-[#4a4946]" />
+        <p className="text-center text-xs font-mono mt-2">{product.name}</p>
+        <p className="text-center">₹ {product.price}<span className='text-[0.75em]'>.00/-</span></p>
+      </div>
+      </Link>
+    ))}
+  </div>
+
+<Link href={'/shop'}>  <button className='cursor-pointer border border-[#4b4945] w-fit mx-auto px-1.5 py-1 mt-4 font-mono'>Explore more</button>
+</Link>
+        </div>
+
+      </div>
+      </div>
+
+      {/* newsletter section  */}
+      <div className='flex h-[50vh] bg-[#F2F1ED]'>
+        <div className='w-full flex items-center justify-center'>
+            <div>
+              <div className='text-2xl mb-3 font-serif'> Subscribe To our Cozy Newsletter</div>
+              <div className='flex'>
+                <input type='text' className=' border border-[#4a4946] w-xl py-3'></input>
+                <button className='px-5 py-1 bg-[#5D2E15] text-[#F2F1ED]'>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div className='w-full'>
+          <img src='https://i.pinimg.com/736x/6f/cc/63/6fcc63fe708b8bc74982176aacfaa87b.jpg' className='object-cover h-[90%] w-[85%] object-center'></img>
+        </div>
+      </div>
     </div>
   );
 }
