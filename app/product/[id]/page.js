@@ -11,7 +11,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 
 // Accordion Component
-function Accordion({ title, id, openAccordions, setOpenAccordions }) {
+function Accordion({ title, id, openAccordions, setOpenAccordions, product }) {
   const toggleAccordion = (accordionId) => {
     setOpenAccordions((prev) => {
       if (prev.includes(accordionId)) {
@@ -47,9 +47,15 @@ function Accordion({ title, id, openAccordions, setOpenAccordions }) {
           {title === "Description" &&
             "This is a high-quality product made with premium materials. It is designed for comfort and durability."}
           {title === "Shipping" &&
-            "Ships within 3-5 business days. Free shipping available on orders over ₹ 50."}
-          {title === "Reviews" &&
-            '⭐⭐⭐⭐☆ (4.5/5) - Customers love this product! "Excellent quality and fast shipping. Highly recommend!"'}
+            (product.price > 1000
+              ? "Free Shipping"
+              : `Shipping Cost: ₹ ${(product.price * 0.12).toFixed(2)}`)}
+          {title === "Return Policy" &&
+            (product.price < 1000
+              ? "No Return available for this product"
+              : `Return Policy: 7 days return policy with deduction of ₹ ${(
+                  product.price * 0.03
+                ).toFixed(2)}`)}
         </div>
       </div>
     </div>
@@ -72,18 +78,17 @@ export default function Products() {
 
   const handleMouseMove = (e) => {
     const { left, top, width, height } = e.target.getBoundingClientRect();
-    
+
     // Calculate the cursor's relative position inside the image
     let x = ((e.clientX - left) / width) * 100;
     let y = ((e.clientY - top) / height) * 100;
 
     // Ensure the zoomed image does not go outside its boundaries
-    x = Math.max(0, Math.min(x, 0)) ;
-    y = Math.max(0, Math.min(y,1000));
+    x = Math.max(0, Math.min(x, 0));
+    y = Math.max(0, Math.min(y, 1000));
 
     setZoomPosition({ x, y });
-};
-
+  };
 
   useEffect(() => {
     if (!id) return;
@@ -99,20 +104,23 @@ export default function Products() {
 
   const addToCart = (product) => {
     let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
-  
-    // Check if the item is already in the cart
+
     const exists = cartData.find((item) => item.id === product.id);
+    if (exists) {
+      toast.error("Product already in cart!");
+    }
     if (!exists) {
       cartData.push(product);
+
+      localStorage.setItem("cartData", JSON.stringify(cartData));
+      toast.success("Product added to cart!");
+
+      // Dispatch custom event with updated cart length
+      window.dispatchEvent(
+        new CustomEvent("cartUpdated", { detail: cartData.length })
+      );
     }
-  
-    localStorage.setItem("cartData", JSON.stringify(cartData));
-    toast.success("Product added to cart!");
-  
-    // Dispatch custom event with updated cart length
-    window.dispatchEvent(new CustomEvent("cartUpdated", { detail: cartData.length }));
   };
-  
 
   const addToWishlist = (product) => {
     let wishlistData = JSON.parse(localStorage.getItem("wishlistData")) || [];
@@ -206,7 +214,33 @@ export default function Products() {
               >
                 Add to Cart
               </button>
-              <button className="w-full bg-[#4A4946] border border-[#4A4946] text-white py-1 cursor-pointer">
+              <button
+                className="w-full bg-[#4A4946] border border-[#4A4946] text-white py-1 cursor-pointer"
+                onClick={() => {
+                  const checkoutData = {
+                    cartItems: [
+                      {
+                        ...product,
+                        selectedQuantity: 1, // Default quantity for direct purchase
+                      },
+                    ],
+                    subtotal: product.price.toFixed(2),
+                    totalShipping:
+                      product.price > 1000
+                        ? 0
+                        : (product.price * 0.12).toFixed(2),
+                    discountedTotal: Math.ceil(
+                      product.price + (product.price > 1000 ? 0 : product.price * 0.12)
+                    ).toFixed(2),
+                  };
+
+                  sessionStorage.setItem(
+                    "checkoutdata",
+                    JSON.stringify(checkoutData)
+                  );
+                  window.location.href = "/checkout"; // Redirect to checkout page
+                }}
+              >
                 Buy Now
               </button>
             </div>
@@ -223,12 +257,15 @@ export default function Products() {
               id="ship"
               openAccordions={openAccordions}
               setOpenAccordions={setOpenAccordions}
-            />
+              product={product}
+            ></Accordion>
+
             <Accordion
-              title="Reviews"
+              title="Return Policy"
               id="rev"
               openAccordions={openAccordions}
               setOpenAccordions={setOpenAccordions}
+              product={product}
             />
           </div>
         </div>

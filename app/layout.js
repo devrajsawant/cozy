@@ -10,6 +10,11 @@ import { AiOutlinePinterest } from "react-icons/ai";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import SearchPanel from "./search";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "./firebase";
+import { createUserWithEmailAndPassword, updateProfile , signInWithEmailAndPassword } from "firebase/auth";
+
+
 
 export default function RootLayout({ children }) {
   const router = useRouter();
@@ -29,6 +34,11 @@ export default function RootLayout({ children }) {
   });
   const [cartCount, setCartCount] = useState(0);
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
+const [resetEmail, setResetEmail] = useState("");
+const [resetMessage, setResetMessage] = useState("");
+
+
 
   const updateCartCount = () => {
     const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
@@ -66,14 +76,24 @@ export default function RootLayout({ children }) {
   // Function to move item to cart (example logic)
   const addToCart = (item) => {
     let cart = JSON.parse(localStorage.getItem("cartData")) || [];
+    
+    // Check if item already exists in the cart
+    const exists = cart.some((cartItem) => cartItem.id === item.id);
+  
+    if (exists) {
+      toast.error("Product already in the cart");
+      return;
+    }
+  
     cart.push(item);
-    toast.success("added to cart");
+    toast.success("Added to cart");
     localStorage.setItem("cartData", JSON.stringify(cart));
-    window.dispatchEvent(new CustomEvent("cartUpdated", { detail: cartData.length }));
-
+    window.dispatchEvent(new CustomEvent("cartUpdated", { detail: cart.length }));
+  
     // Remove from wishlist after adding to cart
     removeFromWishlist(item.id);
   };
+  
 
   // Check for token on mount
   useEffect(() => {
@@ -95,44 +115,68 @@ export default function RootLayout({ children }) {
   };
 
   // Registration: Save user data to localStorage
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match!");
       return;
     }
-    // For demo purposes, store registration data in localStorage
-    localStorage.setItem("registeredUser", JSON.stringify(formData));
-    toast.success("Registration successful! Please login.");
-    setIsRegister(false);
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      password: "",
-      confirmPassword: "",
-    });
+  
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = userCredential.user;
+  
+      await updateProfile(user, {
+        displayName: `${formData.firstName} ${formData.lastName}`,
+      });
+  
+      toast.success("Registration successful! Please login.");
+      setIsRegister(false);
+  
+      // Clear form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
+      });
+  
+    } catch (error) {
+      toast.error("Registration failed: " + error.message);
+    }
   };
 
   // Login: Check credentials and set user token
-  const handleLogin = () => {
-    const registeredUser = JSON.parse(localStorage.getItem("registeredUser"));
-    if (!registeredUser) {
-      toast.error("No user registered. Please register first.");
-      return;
-    }
-    if (
-      formData.email === registeredUser.email &&
-      formData.password === registeredUser.password
-    ) {
-      toast.success("login success");
-      localStorage.setItem("userToken", "loggedIn");
+  const handleLogin = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = userCredential.user;
+  
+      toast.success("Login successful!");
+      
+      // Store Firebase UID as the user token
+      localStorage.setItem("userToken", 'LoggedIn');
+      
       setIsLoggedIn(true);
       setShowLoginPanel(false);
+      
       // Clear sensitive login fields
       setFormData({ ...formData, email: "", password: "" });
-    } else {
-      toast.error("Invalid email or password.");
+  
+    } catch (error) {
+      toast.error("Login failed: " + error.message);
+    }
+  };
+
+  const handleResetPassword = async () => {
+    if (!resetEmail) return setResetMessage("Please enter your email.");
+  
+    try {
+      await sendPasswordResetEmail(auth, resetEmail);
+      setResetMessage("Reset link sent! Check your email.");
+    } catch (error) {
+      setResetMessage("Error: " + error.message);
     }
   };
 
@@ -185,9 +229,7 @@ export default function RootLayout({ children }) {
                 >
                   {isLoggedIn ? "My Account" : "Login"}
                 </div>
-                <div className="text-[#4A4946] text-sm font-semibold border-e-2 border-[#43423f] px-2">
-                  English
-                </div>
+               
                 <div
                   className="text-[#4A4946] text-lg font-bold px-2"
                   onClick={() => setShowSearchPanel(true)}
@@ -241,11 +283,41 @@ export default function RootLayout({ children }) {
 
           {/* Panel Heading */}
           <h2 className="text-3xl font-semibold text-[#4A4946] mb-6 text-center">
-            {isRegister ? "Create Account" : "Welcome Back"}
-          </h2>
+    {isForgotPassword ? "Reset Password" : isRegister ? "Create Account" : "Welcome Back"}
+  </h2>
 
-          {/* Form: Login or Register */}
-          {!isRegister ? (
+  {isForgotPassword ? (
+    <>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-medium mb-1">
+          Enter your email
+        </label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          value={resetEmail}
+          onChange={(e) => setResetEmail(e.target.value)}
+          className="w-full p-1 border focus:bg-[#f3f8ef] outline-none text-gray-800"
+        />
+      </div>
+      <button
+        className="w-full bg-[#5A6354] text-white p-1 text-lg font-medium hover:bg-[#4A4946] transition"
+        onClick={handleResetPassword}
+      >
+        Send Reset Link
+      </button>
+      {resetMessage && <p className="text-sm text-gray-600 mt-2">{resetMessage}</p>}
+      <div className="text-center text-gray-700 mt-4">
+        <a
+          onClick={() => setIsForgotPassword(false)}
+          className="text-[#5A6354] font-medium hover:underline cursor-pointer"
+        >
+          Back to Login
+        </a>
+      </div>
+    </>
+  ):(<>
+  {!isRegister ? (
             <>
               {/* Email Input */}
               <div className="mb-4">
@@ -280,7 +352,7 @@ export default function RootLayout({ children }) {
               {/* Forgot Password Link */}
               <div className="mb-5 text-right">
                 <a
-                  href="#"
+                  onClick={() => setIsForgotPassword(true)}
                   className="text-sm text-[#5A6354] font-medium hover:underline"
                 >
                   Forgot Password?
@@ -396,6 +468,9 @@ export default function RootLayout({ children }) {
               </button>
             </>
           )}
+  </>)}
+
+          
 
           {/* Toggle Login/Register Link */}
           <div className="text-center text-gray-700 mt-4">

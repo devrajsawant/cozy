@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import products from '../JsonData/products.json'
+import toast from 'react-hot-toast';
 
 export default function Home() {
   return (
@@ -187,7 +188,7 @@ export default function Home() {
               <div className='text-2xl mb-3 font-serif'> Subscribe To our Cozy Newsletter</div>
               <div className='flex'>
                 <input type='text' className=' border border-[#4a4946] w-xl py-3'></input>
-                <button className='px-5 py-1 bg-[#5D2E15] text-[#F2F1ED]'>Subscribe</button>
+                <button className='px-5 py-1 bg-[#5D2E15] text-[#F2F1ED]' onClick={()=> toast.success('subscribed to Cozy Newsletter')}>Subscribe</button>
                 </div>
             </div>
         </div>

@@ -1,14 +1,5 @@
------------------------ TO DO -----------------------
-1. create product page ------- @ 
-    a.images , review and shipping part remaining 
-2. login Register page ----- *
-
-3. cart page ---- *
-4. smooth Scrolling 
-5. search 
-6. Wishlist --- *
-7. Language
-8. responsive
-9. checkout
-10. review 
-11. quantity
+1. checkout page
+2. quantity handler 
+3. search page
+4. should be able to go to product from cart page and wishlist
+5. review section

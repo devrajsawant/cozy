@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
@@ -8,38 +9,45 @@ export default function Cart() {
   const [discountedTotal, setDiscountedTotal] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [couponMessage, setCouponMessage] = useState("");
-
-
+  const [totalShipping, setTotalShipping] = useState(0);
   // Load cart data from localStorage on mount
   useEffect(() => {
     const storedCart = localStorage.getItem("cartData");
     if (storedCart) {
-       const parsedCart = JSON.parse(storedCart);
+      const parsedCart = JSON.parse(storedCart).map((item) => ({
+        ...item,
+        selectedQuantity: item.selectedQuantity || 1, // Ensure selectedQuantity is set
+      }));
       setCartItems(parsedCart);
       calculateSubtotal(parsedCart);
     }
   }, []);
 
-  // Update localStorage whenever cartItems change
-  //   useEffect(() => {
-  //     localStorage.setItem("cartData", JSON.stringify(cartItems));
-  //   }, [cartItems]);
+  // Update localStorage & subtotal when cartItems change
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem("cartData", JSON.stringify(cartItems));
+      calculateSubtotal(cartItems);
+    }
+  }, [cartItems]);
 
-  // Increase item quantity
+  // Increase selected quantity (up to max available)
   const increaseQuantity = (id) => {
     setCartItems((prevCart) =>
       prevCart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === id && item.selectedQuantity < item.quantity
+          ? { ...item, selectedQuantity: item.selectedQuantity + 1 }
+          : item
       )
     );
   };
 
-  // Decrease item quantity
+  // Decrease selected quantity (minimum 1)
   const decreaseQuantity = (id) => {
     setCartItems((prevCart) =>
       prevCart.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
+        item.id === id && item.selectedQuantity > 1
+          ? { ...item, selectedQuantity: item.selectedQuantity - 1 }
           : item
       )
     );
@@ -47,33 +55,35 @@ export default function Cart() {
 
   // Remove item from cart
   const removeFromCart = (id) => {
-    let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
-    const updatedCart = cartData.filter((item) => item.id !== id);
-  
-    localStorage.setItem("cartData", JSON.stringify(updatedCart));
+    const updatedCart = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedCart);
-    calculateSubtotal(updatedCart);
-  
-    // Dispatch event with updated cart length
-    window.dispatchEvent(new CustomEvent("cartUpdated", { detail: updatedCart.length }));
+    localStorage.setItem("cartData", JSON.stringify(updatedCart));
+    window.dispatchEvent(
+      new CustomEvent("cartUpdated", { detail: updatedCart.length })
+    );
   };
-  
-  // Calculate total price
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
 
+  // Calculate subtotal
   const calculateSubtotal = (cart) => {
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    let total = 0;
+    let shippingCost = 0;
+
+    cart.forEach((item) => {
+      total += item.price * item.selectedQuantity;
+      if (item.price <= 1000) {
+        shippingCost += item.price * 0.12;
+      }
+    });
+
     setSubtotal(total);
-    setDiscountedTotal(total); // Default total before applying discount
+    setDiscountedTotal(total);
+    setTotalShipping(shippingCost);
   };
 
-
+  // Apply coupon
   const applyCoupon = () => {
     if (couponCode === "Shrads3010") {
-      const discount = subtotal * 0.1;
+      const discount = (subtotal + totalShipping) * 0.1;
       setDiscountedTotal(subtotal - discount);
       setCouponMessage("Coupon applied! 10% discount added.");
     } else {
@@ -84,8 +94,7 @@ export default function Cart() {
 
   return (
     <div className="px-24 mx-auto p-4 min-h-[80vh] bg-[#F2F1ED]">
-        
-      <h2 className="text-4xl my-10 ms-10 font-thin ">Your Cart</h2>
+      <h2 className="text-4xl my-10 ms-10 font-thin">Your Cart</h2>
 
       {cartItems.length > 0 ? (
         <div className="space-y-6 flex justify-around">
@@ -93,79 +102,110 @@ export default function Cart() {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between  border-b py-4"
+                className="flex items-center justify-between border-b py-4"
               >
-                <div className="flex gap-5">
+                {/* Product Info */}
+                <div className="flex gap-5 w-[25vw]">
                   <button
                     className="text-gray-800 text-sm"
                     onClick={() => removeFromCart(item.id)}
                   >
                     <IoClose />
                   </button>
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-18 h-18 object-cover"
-                  />
-                  <div className="w-[20vw]">
-                    <h3 className="text-lg font-serif font-thin">
-                      {item.name}
-                    </h3>
-                    <p className="text-gray-600 font-mono">
-                    ₹{item.price.toFixed(2)}
-                    </p>
-                  </div>
+                  <Link
+                    href={`/product/${item.id}`}
+                    passHref
+                    className="flex gap-5"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-18 h-18 object-cover"
+                    />
+                    <div className="w-[14vw]">
+                      <h3 className="text-lg font-serif font-thin truncate">
+                        {item.name}
+                      </h3>
+                      <p className="text-gray-600 font-mono">
+                        ₹{item.price.toFixed(2)}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
 
-                {/* <div className="flex items-center h-fit gap-2 mt-2 border">
+                {/* Shipping Cost */}
+                <div className="w-[6vw] text-center mx-5 text-xs">
+                  {item.price > 1000
+                    ? ""
+                    : `Shipping Cost:  ₹ ${(item.price * 0.12).toFixed(2)}`}
+                </div>
+
+                {/* Quantity Controls */}
+                <div className="flex items-center h-fit gap-2 border w-[10vw] justify-center mx-2 ">
                   <button
-                    className="px-2 "
+                    className="px-2"
                     onClick={() => decreaseQuantity(item.id)}
                   >
                     -
                   </button>
-                  <span className="px-4">5</span>
+                  <span className="px-4">{item.selectedQuantity}</span>
                   <button
-                    className="px-2 "
+                    className={`px-2 ${
+                      item.selectedQuantity >= item.quantity
+                        ? "text-gray-400"
+                        : ""
+                    }`}
                     onClick={() => increaseQuantity(item.id)}
+                    disabled={item.selectedQuantity >= item.quantity}
                   >
                     +
                   </button>
-                </div> */}
-                <div>
-                  ₹ {item.price * 5}
+                </div>
+
+                {/* Item Total Price */}
+                <div className="w-[10vw] text-right">
+                  ₹ {item.price * item.selectedQuantity}
                   <span className="text-xs">.00/-</span>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* summary part is here  */}
+          {/* Summary Section */}
           <div className="w-[30vw] border-s ps-5">
-            <div className="text-3xl font-thin border-b border-[#4A4946] pb-4">Cart Total</div>
-            <div className="pt-2 flex justify-between text-md text-[#4A4946] ">
-              <span>Shipping Charges:</span>
-              <span>Free</span>
+            <div className="text-3xl font-thin border-b border-[#4A4946] pb-4">
+              Cart Total
             </div>
             <div className="pt-2 flex justify-between text-md text-[#4A4946]">
-              <span>Tax</span>
-              <span>₹ 00</span>
+              <span>Shipping Charges:</span>
+              <span>₹ {totalShipping.toFixed(2)}</span>
             </div>
+
             <div className="pt-2 flex justify-between text-md text-[#4A4946]">
               <span>Subtotal</span>
               <span>₹ {subtotal.toFixed(2)}</span>
-
             </div>
-            <div className=" pt-5 pb-2 mt-5 border-t">
-                <div className="text-sm text-[#32312f] pb-2 ">Have coupon code ? Enter your code :</div>
-                <div className="flex w-full">
-                <input type="text" className="border w-full p-2 text-sm text-thin"  value={couponCode}
-                  onChange={(e) => setCouponCode(e.target.value)}></input>
-                 <button className="px-10 bg-[#55534d] text-white py-1 text-lg"  onClick={applyCoupon}>
+
+            {/* Coupon Section */}
+            <div className="pt-5 pb-2 mt-5 border-t">
+              <div className="text-sm text-[#32312f] pb-2">
+                Have a coupon code? Enter your code:
+              </div>
+              <div className="flex w-full">
+                <input
+                  type="text"
+                  className="border w-full p-2 text-sm text-thin"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                />
+                <button
+                  className="px-10 bg-[#55534d] text-white py-1 text-lg"
+                  onClick={applyCoupon}
+                >
                   Apply
-                 </button>
-                </div>
-                {couponMessage && (
+                </button>
+              </div>
+              {couponMessage && (
                 <div
                   className={`text-sm mt-1 ${
                     couponMessage.includes("Invalid")
@@ -177,17 +217,33 @@ export default function Cart() {
                 </div>
               )}
             </div>
+
             <div className="py-4 mt-1 flex justify-between font-thin border-t text-xl">
               <span>Total:</span>
-              <span>₹ {discountedTotal.toFixed(2)}</span>
+              <span>₹ {Math.ceil(discountedTotal + totalShipping)}.00</span>
             </div>
 
-            
-            <button className="w-full bg-[#55534d] text-white py-2 text-lg">
+            <button
+              className="w-full bg-[#55534d] text-white py-2 text-lg"
+              onClick={() => {
+                const checkoutData = {
+                  cartItems,
+                  subtotal,
+                  totalShipping,
+                  discountedTotal: Math.ceil(discountedTotal + totalShipping),
+                };
+                sessionStorage.setItem(
+                  "checkoutdata",
+                  JSON.stringify(checkoutData)
+                );
+                window.location.href = "/checkout"; // Redirect
+              }}
+            >
               Checkout
             </button>
-
-            <button className="w-full text-sm mt-5 font-mono"> Continue Shopping</button>
+            <button className="w-full text-sm mt-5 font-mono">
+              Continue Shopping
+            </button>
           </div>
         </div>
       ) : (

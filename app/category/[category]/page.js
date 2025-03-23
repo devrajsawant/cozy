@@ -40,14 +40,16 @@ export default function CategoryProducts() {
                   alt={product.name}
                   className="h-[70%] w-full object-cover pb-2 border-b border-[#4a4946]"
                 />
-              </Link>
+             
               <p className="text-center text-xs font-mono mt-2">{product.name}</p>
               <p className="text-center ">₹ {product.price}.00/-</p>
               <div className="w-full flex item-center ">
               <button className="mt-2 border border-[#4a4946] mx-auto px-2  hover:bg-[#3a3936] hover:text-white transition">
-                Add to Cart
+                View Product
               </button>
+              
               </div>
+              </Link>
             </div>
           ))
         ) : (
