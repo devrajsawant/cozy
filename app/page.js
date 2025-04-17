@@ -5,9 +5,9 @@ import toast from 'react-hot-toast';
 
 export default function Home() {
   return (
-    <div>
+    <div className=''>
       {/* Hero section starts here */}
-      <div className="flex bg-[#E6DDCB] justify-between h-[60vh]">
+      <div className="flex bg-[#E6DDCB] justify-between  h-[60vh] p-10 overflow-hidden flex-col md:flex-row">
         <div className="flex items-center justify-center w-full">
           <div>
             <div className="text-4xl text-[#4A4946] font-serif">
@@ -24,11 +24,14 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="w-full overflow-hidden object-cover">
+        <div className="md:w-full w-[85vw] overflow-hidden object-cover">
         <img src='https://i.pinimg.com/736x/56/07/72/56077283257e200f577db7167acfee11.jpg' className='h-[100%] w-[100%] object-cover'></img>
 
         </div>
       </div>
+
+      
+      
       {/* category section starts here  */}
       <div className="flex bg-[#F2F1ED] items-center justify-center py-10">
         <div>
@@ -40,12 +43,12 @@ export default function Home() {
               Popular Categories
             </div>
           </div>
-          <div className="flex gap-10 justify-between">
+          <div className="flex flex-col gap-6 md:flex-row md:gap-10 md:justify-between px-2">
             {/* perfume cat  */}
            <Link href={'category/perfumes'}>
            <div>
-              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
-              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+              <div className=" border-3 border-dashed p-2 h-[140px] w-full md:h-[300px] md:w-[170px] rounded-full  md:rounded-full flex md:block items-center gap-4">
+              <div className="h-[120px] w-full md:h-[280px] md:w-[150px] rounded-full overflow-hidden">
                 <img
                   src="https://i.pinimg.com/736x/7e/19/07/7e1907a36a03e00eb9201997e036530b.jpg"
                   className="h-full w-full object-cover"
@@ -59,8 +62,8 @@ export default function Home() {
             {/* bathing Essentials  */}
            <Link href={'category/Bathing_Products'}>
            <div>
-              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
-              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+              <div className=" border-3 border-dashed p-2 h-[140px] w-full md:h-[300px] md:w-[170px] rounded-full  md:rounded-full flex md:block items-center gap-4">
+              <div className="h-[120px] w-full md:h-[280px] md:w-[150px] rounded-full overflow-hidden">
                 <img
                   src="https://i.pinimg.com/736x/00/c0/4d/00c04d42f728348f6f9a536e66ea0009.jpg"
                   className="h-full w-full object-cover"
@@ -74,8 +77,8 @@ export default function Home() {
             {/* Haircare Essentials  */}
            <Link href={'category/haircare'}>
            <div>
-              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
-              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+              <div className=" border-3 border-dashed p-2 h-[140px] w-full md:h-[300px] md:w-[170px] rounded-full  md:rounded-full flex md:block items-center gap-4">
+              <div className="h-[120px] w-full md:h-[280px] md:w-[150px] rounded-full overflow-hidden">
                 <img
                   src="https://i.pinimg.com/736x/49/3f/2c/493f2c78b93838c5227cdab8e2aacb52.jpg"
                   className="h-full w-full object-cover"
@@ -89,8 +92,8 @@ export default function Home() {
             {/* Skin care  */}
            <Link href={'category/skincare'}>
            <div>
-              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
-              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+              <div className=" border-3 border-dashed p-2 h-[140px] w-full md:h-[300px] md:w-[170px] rounded-full  md:rounded-full flex md:block items-center gap-4">
+              <div className="h-[120px] w-full md:h-[280px] md:w-[150px] rounded-full overflow-hidden">
                 <img
                   src="https://i.pinimg.com/736x/78/b7/9e/78b79ef9a907edfd255892082b224463.jpg"
                   className="h-full w-full object-cover"
@@ -104,8 +107,8 @@ export default function Home() {
             {/* Scented Candles  */}
            <Link href={'category/candles'}>
            <div>
-              <div className=" border-3 border-dashed p-2 h-[300px] w-[170px] rounded-full">
-              <div className="h-[280px] w-[150px] rounded-full overflow-hidden">
+              <div className=" border-3 border-dashed p-2 h-[140px] w-full md:h-[300px] md:w-[170px] rounded-full  md:rounded-full flex md:block items-center gap-4">
+              <div className="h-[120px] w-full md:h-[280px] md:w-[150px] rounded-full overflow-hidden">
                 <img
                   src="https://i.pinimg.com/736x/bd/ac/37/bdac3770dcf6dd7629974542c93e7d81.jpg"
                   className="h-full w-full object-cover "
@@ -121,16 +124,16 @@ export default function Home() {
       </div>
 
       {/* hero2 section is here  */}
-      <div className="flex px-10 pb-5 bg-[#F2F1ED]">
+      <div className="flex px-10 pb-5 bg-[#F2F1ED] md:flex-row flex-col gap-4 md:gap-0">
         <div className="w-full">
           <img src="https://i.pinimg.com/736x/4c/5a/17/4c5a179600244250d4c7ef09c4633dbe.jpg" className="w-[100%]"></img>
         </div>
         <div className="w-full flex justify-center items-center">
-          <div className="text-center flex flex-col gap-5">
+          <div className="text-center flex flex-col gap-2 md:gap-5">
             <div className="font-mono text-sm">Best Collections of 2025</div>
-            <div className="font-serif text-3xl text-[#4a4946]">Indule in <span>Cozy</span> Elegance</div>
-            <div className="text-lg font-serif text-[#576152]">Surround Yourself with Scents, Skincare, and Serenity <br/>That Feel as Cozy as Home</div>
-            <button className="underline text-sm">
+            <div className="font-serif lg:text-3xl text-2xl text-[#4a4946]">Indule in <span>Cozy</span> Elegance</div>
+            <div className="lg:text-lg text-sm font-serif text-[#576152]">Surround Yourself with Scents, Skincare, and Serenity <br/>That Feel as Cozy as Home</div>
+            <button className="underline text-xs lg:text-sm">
             <Link href={'/shop'}>
               SHOP NOW
            </Link>
@@ -145,11 +148,11 @@ export default function Home() {
       {/* Best Seller section is here  */}
       <div className='flex items-center justify-center py-10 bg-[#F2F1ED]'>
       <div className=' w-[80vw] text-center'>
-        <div className='text-lg mb-2 font-mono'>Trending Products</div>
-        <div className='text-2xl font-serif mb-5 '>Having a Place set aside for an Activity you love <br/> makes it more likely you'll do it</div>
+        <div className='lg:text-lg mb-2 font-mono text-sm'>Trending Products</div>
+        <div className='lg:text-2xl font-serif mb-5 text-lg'>Having a Place set aside for an Activity you love <br/> makes it more likely you'll do it</div>
         <div className="flex flex-col gap-4">
   {/* First Row */}
-  <div className="flex justify-center gap-5">
+  <div className="flex justify-center flex-col items-center md:flex-row gap-5">
     {products.slice(0, 4).map((product) => (
       <Link key={product.id} href={`/product/${product.id}`}>
       <div  className="h-[300px] w-[200px] bg-[#E5E2DB] p-3 hover:bg-[#d7d6d2] transition-all ease-in-out duration-300">
@@ -162,7 +165,7 @@ export default function Home() {
   </div>
 
   {/* Second Row */}
-  <div className="flex justify-center gap-5">
+  <div className="md:flex justify-center items-center gap-5 flex-col md:flex-row hidden ">
     {products.slice(4, 8).map((product) => (
       <Link key={product.id} href={`/product/${product.id}`}>
       <div  className="h-[300px] w-[200px] bg-[#E5E2DB] p-3 hover:bg-[#d7d6d2] transition-all ease-in-out duration-300">
@@ -182,17 +185,17 @@ export default function Home() {
       </div>
 
       {/* newsletter section  */}
-      <div className='flex h-[50vh] bg-[#F2F1ED]'>
-        <div className='w-full flex items-center justify-center'>
+      <div className='flex lg:h-[50vh] h-[25vh] bg-[#F2F1ED] px-4 '>
+        <div className='lg:w-full mx-auto w-full flex items-center mg:flex-row flex-col justify-center overflow-hidden'>
             <div>
-              <div className='text-2xl mb-3 font-serif'> Subscribe To our Cozy Newsletter</div>
-              <div className='flex'>
-                <input type='text' className=' border border-[#4a4946] w-xl py-3'></input>
-                <button className='px-5 py-1 bg-[#5D2E15] text-[#F2F1ED]' onClick={()=> toast.success('subscribed to Cozy Newsletter')}>Subscribe</button>
+              <div className='lg:text-2xl text-lg text-center lg:text-start mb-3 font-serif'> Subscribe To our Cozy Newsletter</div>
+              <div className='flex md:flex-row flex-col gap-2 md:gap-0'>
+                <input type='text' className=' border border-[#4a4946] md:w-xl md:py-3 py-1'></input>
+                <button className='lg:px-5 px-2 py-1 bg-[#5D2E15] text-[#F2F1ED]' onClick={()=> toast.success('subscribed to Cozy Newsletter')}>Subscribe</button>
                 </div>
             </div>
         </div>
-        <div className='w-full'>
+        <div className='w-full hidden md:block'>
           <img src='https://i.pinimg.com/736x/6f/cc/63/6fcc63fe708b8bc74982176aacfaa87b.jpg' className='object-cover h-[90%] w-[85%] object-center'></img>
         </div>
       </div>

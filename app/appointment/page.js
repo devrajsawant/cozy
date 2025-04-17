@@ -59,9 +59,9 @@ export default function AppointmentPage() {
 
     return (
         <div className="min-h-screen flex items-top py-10 justify-center bg-[#F2F1ED]">
-            <div className="w-full max-w-4xl flex">
+            <div className="w-full max-w-4xl flex flex-col md:flex-row">
                 {/* Left Section - Image & Text */}
-                <div className="w-1/2 flex flex-col justify-top items-center text-center p-6">
+                <div className="md:w-1/2 w-full flex flex-col justify-top items-center text-center p-6">
                     <div className="w-full h-80 bg-red-200 flex items-center justify-center">
                         <img src="https://i.pinimg.com/736x/be/c5/ca/bec5caad0daa8bcbaf3fc1a2e75e1449.jpg" alt="Appointment" className="w-full h-full object-cover" />
                     </div>
@@ -73,7 +73,7 @@ export default function AppointmentPage() {
                 </div>
 
                 {/* Right Section - Form or Appointment Card */}
-                <div className="w-1/2 p-6">
+                <div className="md:w-1/2 w-full p-6">
                     {!appointment ? (
                         <>
                             <h1 className="text-xl font-bold mb-6 text-gray-800">Book Skin Care Appointment With Us.</h1>
@@ -93,7 +93,7 @@ export default function AppointmentPage() {
                                     <input type="tel" className="w-full px-3 py-1 border-b border-gray-400 focus:outline-none focus:border-blue-500"
                                         value={phone} onChange={(e) => setPhone(e.target.value)} required />
                                 </div>
-                                <div className="mb-4 flex space-x-4">
+                                <div className="mb-4 flex flex-col gap-4 md:flex-row space-x-4">
                                     <div>
                                         <label className="block text-gray-700">Date</label>
                                         <DatePicker
@@ -104,9 +104,9 @@ export default function AppointmentPage() {
                                             required
                                         />
                                     </div>
-                                    <div>
+                                    <div >
                                         <label className="block text-gray-700">Time</label>
-                                        <div className="flex space-x-2">
+                                        <div className="flex space-x-2 ">
                                             <select className="w-full px-3 py-1 border-b border-gray-400 focus:outline-none focus:border-blue-500"
                                                 value={time.hour}
                                                 onChange={(e) => setTime({ ...time, hour: e.target.value })}

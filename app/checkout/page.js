@@ -56,9 +56,9 @@ const CheckoutPage = () => {
   return (
     <div className="flex flex-col items-center justify-start pt-20 min-h-screen bg-[#F8F8F8] p-4">
       <h2 className="text-4xl font-light font-serif mb-6">Checkout</h2>
-      <div className="flex gap-10 w-[60vw]">
+      <div className="flex gap-10 w-[60vw] flex-col md:flex-row">
         {/* Left Side - Shipping Form */}
-        <div className="w-1/2 text-sm">
+        <div className="md:w-1/2 w-full text-sm">
           <h3 className="text-2xl font-light pb-5">Shipping Address</h3>
           <form onSubmit={handleSubmit} className="space-y-3 mt-3">
             <div className="flex gap-3">
@@ -146,7 +146,7 @@ const CheckoutPage = () => {
         </div>
 
         {/* Right Side - Order Summary */}
-        <div className="w-1/2 text-sm">
+        <div className="md:w-1/2 w-full text-sm">
           <h3 className="text-2xl font-thin pb-5">Order Summary</h3>
           {checkoutData ? (
             <>
@@ -160,19 +160,21 @@ const CheckoutPage = () => {
                         alt={product.name}
                         className="w-12 h-12 object-cover"
                       />
-                      <div className="flex-1">
+                     <div className="flex flex-col md:flex-row md:justify-between w-full">
+                     <div className="flex-1">
                         <h4 className="truncate">{product.name}</h4>
                         <p className="text-gray-600">
                           ₹{product.price} x{" "}
                           {product.selectedQuantity || 1}
                         </p>
                       </div>
-                      <span>
+                      <div className="">
                         ₹
                         {(
                           product.price * (product.selectedQuantity || 1)
                         )}
-                      </span>
+                      </div>
+                     </div>
                     </div>
                   ))}
                 </div>

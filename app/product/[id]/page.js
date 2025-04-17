@@ -152,9 +152,9 @@ export default function Products() {
         <Toaster />
       </div>
       {/* Product Details */}
-      <div className="flex w-[80vw] mx-auto gap-16 justify-center py-5 pb-10 border-b border-[#4A4946]">
-        <div className="h-[500px] object-contain">
-          <div
+      <div className="flex flex-col lg:flex-row w-[90vw] mx-auto gap-10 justify-center py-5 pb-10 border-b border-[#4A4946]">
+      <div className="relative h-[350px] w-[260px] sm:h-[400px] sm:w-[300px] shadow-lg">
+      <div
             className="relative h-[400px] w-[300px] shadow-lg"
             onMouseEnter={() => setShowZoom(true)}
             onMouseLeave={() => setShowZoom(false)}
@@ -162,11 +162,11 @@ export default function Products() {
           >
             <img
               src={product.image}
-              className="h-[400px] w-[300px] object-cover shadow-lg"
+              className="h-[400px] w-[300px]  object-cover shadow-lg"
               alt={product.name}
             />
             {showZoom && (
-              <div className="absolute top-0 left-full ml-5 w-[250px] h-[250px] border overflow-hidden shadow-lg bg-white">
+              <div className="hidden md:block absolute top-0 left-full ml-5 w-[250px] h-[250px] border overflow-hidden shadow-lg bg-white">
                 <img
                   src={product.image}
                   className="absolute w-[600px] h-[600px] object-cover"
@@ -191,17 +191,17 @@ export default function Products() {
             ))}
           </div> */}
         </div>
-        <div className="w-[35vw]">
-          <div className="flex flex-col gap-6">
-            <div className="flex justify-between px-6 py-4 border-b border-[#4A4946]">
-              <div className="text-4xl font-serif text-[#4A4946] w-[70%]">
+        <div className="w-full lg:w-[35vw] px-4">
+        <div className="flex flex-col gap-6">
+            <div className="flex flex-col md:flex-row gap-2 justify-between px-6 py-4 border-b border-[#4A4946]">
+              <div className="md:text-4xl text-2xl font-serif text-[#4A4946] md:w-[70%] w-full">
                 {product.name}
               </div>
               <div className="text-2xl font-mono text-[#4A4946]">
                 ₹ {product.price}
               </div>
             </div>
-            <div className="flex justify-between gap-4 px-6">
+            <div className="flex justify-between gap-2 md:gap-4 px-6">
               <button
                 className="w-fit px-3 py-1 border border-[#4A4946] text-[#4A4946] cursor-pointer"
                 onClick={() => addToWishlist(product)}
@@ -245,7 +245,7 @@ export default function Products() {
               </button>
             </div>
           </div>
-          <div className="mt-6 px-6">
+          <div className="mt-6 px-6 sm:px-6">
             <Accordion
               title="Description"
               id="desc"
@@ -294,7 +294,12 @@ export default function Products() {
         {/* Swiper Component (Pagination Removed) */}
         <Swiper
           modules={[Navigation]}
-          slidesPerView={3}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
           spaceBetween={20}
           navigation={{
             prevEl: prevRef.current,

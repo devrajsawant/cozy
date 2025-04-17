@@ -191,6 +191,7 @@ export default function Account() {
                             alt={item.name}
                             className="w-12 h-12 object-cover"
                           />
+                          <div className="flex flex-col md:flex-row md:justify-between w-full">
                           <div className="flex-1">
                             <h4 className="truncate">{item.name}</h4>
                             <p className="text-gray-600">
@@ -198,9 +199,10 @@ export default function Account() {
                               {item.selectedQuantity}
                             </p>
                           </div>
-                          <span>
+                          <div>
                             ₹{(item.price * item.selectedQuantity) }
-                          </span>
+                          </div>
+                          </div>
                         </div>
                       ))}
                     </div>
