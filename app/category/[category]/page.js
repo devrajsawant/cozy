@@ -17,7 +17,7 @@ export default function CategoryProducts() {
     <div className=" mx-auto p-5 bg-[#F2F1ED]">
       {/* Sorting Dropdown */}
       
-      <div className="flex justify-between items-center mb-5 px-30 w-[75%] mx-auto">
+      <div className="flex justify-between items-center mb-5 flex-col gap-4 md:gap-0 md:flex-row md:px-30 px-0 w-[75%] mx-auto">
         <h2 className="text-2xl font-semibold text-gray-800 capitalize">{category} Collection</h2>
         <select
           className="border px-1.5 py-1 bg-white text-gray-700"
