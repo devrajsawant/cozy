@@ -55,14 +55,9 @@ export default function RootLayout({ children }) {
   };
 
   useEffect(() => {
-    // Initialize cart count on mount
     updateCartCount();
-
-    // Listen to the custom event
     const handleCartUpdate = (e) => setCartCount(e.detail);
     window.addEventListener("cartUpdated", handleCartUpdate);
-
-    // Cleanup listener
     return () => {
       window.removeEventListener("cartUpdated", handleCartUpdate);
     };
@@ -73,16 +68,14 @@ export default function RootLayout({ children }) {
     if (storedWishlist) {
       setWishlistItems(JSON.parse(storedWishlist));
     }
-  }, [showWishlistPanel]); // Refetch when wishlist panel opens
+  }, [showWishlistPanel]);
 
-  // Function to remove item from wishlist
   const removeFromWishlist = (id) => {
     const updatedWishlist = wishlistItems.filter((item) => item.id !== id);
     setWishlistItems(updatedWishlist);
     localStorage.setItem("wishlistData", JSON.stringify(updatedWishlist));
   };
 
-  // Function to move item to cart (example logic)
   const addToCart = (item) => {
     let cart = JSON.parse(localStorage.getItem("cartData")) || [];
 
@@ -105,13 +98,11 @@ export default function RootLayout({ children }) {
     removeFromWishlist(item.id);
   };
 
-  // Check for token on mount
   useEffect(() => {
     const token = localStorage.getItem("userToken");
     setIsLoggedIn(!!token);
   }, []);
 
-  // Disable scrolling when panel is open
   useEffect(() => {
     document.body.style.overflow =
       showLoginPanel || showWishlistPanel || showSearchPanel
@@ -119,12 +110,10 @@ export default function RootLayout({ children }) {
         : "auto";
   }, [showLoginPanel, showWishlistPanel, showSearchPanel]);
 
-  // Handle form input change
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Registration: Save user data to localStorage
   const handleRegister = async () => {
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match!");
@@ -146,7 +135,6 @@ export default function RootLayout({ children }) {
       toast.success("Registration successful! Please login.");
       setIsRegister(false);
 
-      // Clear form
       setFormData({
         firstName: "",
         lastName: "",
@@ -160,7 +148,6 @@ export default function RootLayout({ children }) {
     }
   };
 
-  // Login: Check credentials and set user token
   const handleLogin = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -178,7 +165,6 @@ export default function RootLayout({ children }) {
       setIsLoggedIn(true);
       setShowLoginPanel(false);
 
-      // Clear sensitive login fields
       setFormData({ ...formData, email: "", password: "" });
     } catch (error) {
       toast.error("Login failed: " + error.message);
@@ -245,7 +231,6 @@ export default function RootLayout({ children }) {
                       setShowLoginPanel(true);
                       setIsRegister(false);
                     } else {
-                      // Redirect to /account if logged in
                       router.push("/account");
                     }
                   }}

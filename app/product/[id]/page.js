@@ -17,7 +17,7 @@ function Accordion({ title, id, openAccordions, setOpenAccordions, product }) {
       if (prev.includes(accordionId)) {
         return prev.filter((id) => id !== accordionId);
       }
-      return [...prev, accordionId].slice(-2); // Keep max 2 open
+      return [...prev, accordionId].slice(-2); 
     });
   };
 

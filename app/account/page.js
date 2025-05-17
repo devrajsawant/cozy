@@ -3,13 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { FaPencilAlt } from "react-icons/fa";
 
 export default function Account() {
   const router = useRouter();
   const [orderHistory, setOrderHistory] = useState([]);
   const [appointment, setAppointment] = useState(null);
-  const [activeTab, setActiveTab] = useState("account"); // "account" or "orders"
+  const [activeTab, setActiveTab] = useState("account"); 
 
   const [userData, setUserData] = useState({
     firstName: "",
@@ -34,7 +35,6 @@ export default function Account() {
     }, 1500);
   };
 
-  // Load user data from localStorage on mount
   useEffect(() => {
     const token = localStorage.getItem("userToken");
 
@@ -42,7 +42,6 @@ export default function Account() {
       toast.error("Please Login to Access Account Page");
       router.push("/");
     } else {
-      // Load user data
       const storedUser = localStorage.getItem("registeredUser");
       if (storedUser) {
         setUserData(JSON.parse(storedUser));
@@ -66,13 +65,11 @@ export default function Account() {
     }
   }, []);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle image upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -93,7 +90,7 @@ export default function Account() {
   useEffect(() => {
     const storedOrders = JSON.parse(localStorage.getItem("orderHistory")) || [];
     setOrderHistory(storedOrders);
-  }, []); // Empty dependency array ensures this runs only once when the component mounts.
+  }, []); 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F2F1ED] p-4">
@@ -110,7 +107,7 @@ export default function Account() {
               className="w-full h-full object-cover rounded-full border-2 border-gray-400"
             />
             <label className="absolute bottom-1 right-1 bg-gray-500 text-white text-xs p-1 rounded-full cursor-pointer">
-              ✏️
+              <FaPencilAlt />
               <input
                 type="file"
                 className="hidden"

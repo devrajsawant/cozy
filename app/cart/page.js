@@ -16,7 +16,7 @@ export default function Cart() {
     if (storedCart) {
       const parsedCart = JSON.parse(storedCart).map((item) => ({
         ...item,
-        selectedQuantity: item.selectedQuantity || 1, // Ensure selectedQuantity is set
+        selectedQuantity: item.selectedQuantity || 1, 
       }));
       setCartItems(parsedCart);
       calculateSubtotal(parsedCart);

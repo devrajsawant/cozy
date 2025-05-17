@@ -31,25 +31,19 @@ const CheckoutPage = () => {
     e.preventDefault();
   
     const orderDetails = {
-      shippingDetails: formData, // User's shipping info
-      orderDetails: checkoutData, // Ordered products & pricing
-      orderDate: new Date().toLocaleString(), // Store order date
+      shippingDetails: formData, 
+      orderDetails: checkoutData, 
+      orderDate: new Date().toLocaleString(), 
     };
   
-    // Retrieve existing order history
     const orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
-  
-    // Add new order to the order history
     orderHistory.push(orderDetails);
-  
-    // Save updated order history back to localStorage
     localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
   
     console.log("Shipping Details:", formData);
     console.log("Order Details:", checkoutData);
     toast.success("Order Placed Successfully!");
   
-    // Redirect to homepage
     window.location.href = "/";
   };
   

@@ -1,4 +1,3 @@
-// components/SearchPanel.js
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 

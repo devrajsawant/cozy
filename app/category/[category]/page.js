@@ -28,7 +28,6 @@ export default function CategoryProducts() {
           <option value="desc" className="text-sm font-mono">Price: High to Low</option>
         </select>
       </div>
-      {/* Product Grid - 4 Products Per Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 w-fit mx-auto">
         
         {filteredProducts.length > 0 ? (
